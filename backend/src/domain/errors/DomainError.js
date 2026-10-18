@@ -14,3 +14,7 @@ export class FormaPagoInvalidaError extends DomainError {}
 export class UsuarioNoRegistradoError extends DomainError {}
 export class PagoRechazadoError extends DomainError {}
 export class EmailInvalidoError extends DomainError {}
+export class NombreInvalidoError extends DomainError {}
+export class PasswordInvalidaError extends DomainError {}
+export class UsuarioYaRegistradoError extends DomainError {}
+export class CredencialesInvalidasError extends DomainError {}
