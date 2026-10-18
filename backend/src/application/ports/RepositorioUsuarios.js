@@ -5,4 +5,16 @@ export class RepositorioUsuarios {
   async buscarPorId (_usuarioId) {
     throw new Error('RepositorioUsuarios.buscarPorId: método no implementado')
   }
+
+  async buscarPorNombre (_nombre) {
+    throw new Error('RepositorioUsuarios.buscarPorNombre: método no implementado')
+  }
+
+  async buscarPorEmail (_email) {
+    throw new Error('RepositorioUsuarios.buscarPorEmail: método no implementado')
+  }
+
+  async guardar (_usuario) {
+    throw new Error('RepositorioUsuarios.guardar: método no implementado')
+  }
 }
