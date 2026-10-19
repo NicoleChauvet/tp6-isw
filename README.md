@@ -54,13 +54,13 @@ Completar `.env` con credenciales propias (**nunca commitear este archivo**):
 
 ```
 PORT=3000
-MERCADOPAGO_ACCESS_TOKEN=   # Access Token de prueba/sandbox de la cuenta del grupo
-MERCADOPAGO_PUBLIC_KEY=
+MERCADOPAGO_ACCESS_TOKEN= APP_USR-2602591896409361-101218-9c24030a27b1b4d90e82d07540444e3b-3760410522  # Access Token de prueba/sandbox de la cuenta del grupo
+MERCADOPAGO_PUBLIC_KEY= APP_USR-b13f1c25-b865-40de-b9ae-847e844d533e
 SMTP_HOST=smtp.gmail.com
 SMTP_PORT=465
 SMTP_SECURE=true
-SMTP_USER=                  # Cuenta de Gmail usada para enviar el comprobante
-SMTP_PASS=                  # Contraseña de aplicación de Gmail (no la contraseña de la cuenta)
+SMTP_USER=   # Cuenta de Gmail usada para enviar el comprobante
+SMTP_PASS=     # Contraseña de aplicación de Gmail (no la contraseña de la cuenta)
 FRONTEND_URL=http://localhost:5173
 ```
 

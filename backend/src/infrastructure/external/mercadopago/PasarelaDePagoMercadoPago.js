@@ -36,14 +36,16 @@ export class PasarelaDePagoMercadoPago extends PasarelaDePago {
         success: `${this.frontendUrl}/pago-exitoso`,
         failure: `${this.frontendUrl}/pago-fallido`,
         pending: `${this.frontendUrl}/pago-pendiente`
-      }
+      } , 
+      "auto_return":"approved"
     }
 
     // Mercado Pago rechaza auto_return si las back_urls apuntan a localhost
     // (error "invalid_auto_return"), así que en desarrollo local se omite.
-    if (!esUrlLocal(this.frontendUrl)) {
-      body.auto_return = 'approved'
-    }
+    // if (!esUrlLocal(this.frontendUrl)) {
+      // body.auto_return = 'approved'
+    // }
+
 
     const respuesta = await this.preference.create({ body })
 
