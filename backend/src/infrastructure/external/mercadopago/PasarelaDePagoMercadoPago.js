@@ -5,6 +5,11 @@ function capitalizar (texto) {
   return texto.charAt(0).toUpperCase() + texto.slice(1)
 }
 
+function esUrlLocal (url) {
+  const { hostname } = new URL(url)
+  return hostname === 'localhost' || hostname === '127.0.0.1'
+}
+
 // Adaptador de infraestructura (hexagonal): implementa el puerto PasarelaDePago
 // usando el SDK oficial de Mercado Pago (Checkout Pro). Las credenciales nunca
 // se hardcodean: llegan por inyección de dependencias desde variables de entorno.
@@ -24,18 +29,23 @@ export class PasarelaDePagoMercadoPago extends PasarelaDePago {
       currency_id: 'ARS'
     }))
 
-    const respuesta = await this.preference.create({
-      body: {
-        items,
-        payer: { email },
-        back_urls: {
-          success: `${this.frontendUrl}/pago-exitoso`,
-          failure: `${this.frontendUrl}/pago-fallido`,
-          pending: `${this.frontendUrl}/pago-pendiente`
-        },
-        auto_return: 'approved'
+    const body = {
+      items,
+      payer: { email },
+      back_urls: {
+        success: `${this.frontendUrl}/pago-exitoso`,
+        failure: `${this.frontendUrl}/pago-fallido`,
+        pending: `${this.frontendUrl}/pago-pendiente`
       }
-    })
+    }
+
+    // Mercado Pago rechaza auto_return si las back_urls apuntan a localhost
+    // (error "invalid_auto_return"), así que en desarrollo local se omite.
+    if (!esUrlLocal(this.frontendUrl)) {
+      body.auto_return = 'approved'
+    }
+
+    const respuesta = await this.preference.create({ body })
 
     return {
       initPoint: respuesta.init_point,
